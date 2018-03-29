@@ -12,6 +12,8 @@ import fi.haagahelia.EmployeeDatabase.domain.Department;
 import fi.haagahelia.EmployeeDatabase.domain.DepartmentRepository;
 import fi.haagahelia.EmployeeDatabase.domain.Employee;
 import fi.haagahelia.EmployeeDatabase.domain.EmployeeRepository;
+import fi.haagahelia.EmployeeDatabase.domain.Office;
+import fi.haagahelia.EmployeeDatabase.domain.OfficeRepository;
 
 @SpringBootApplication
 public class EmployeeDatabaseApplication {
@@ -23,10 +25,10 @@ public class EmployeeDatabaseApplication {
 	
 	//For demonstration data purposes
 	@Bean
-	public CommandLineRunner demodata(EmployeeRepository repository, DepartmentRepository drepository) {
+	public CommandLineRunner demodata(EmployeeRepository repository, DepartmentRepository drepository, OfficeRepository orepository) {
 		return (args) -> {
 			
-			log.info("Save a few categories and books");
+			log.info("Save a few departments, employees and offices");
 			Department d1 = new Department("Sales");
 			Department d2 = new Department("IT");
 			Department d3 = new Department("Financial");
@@ -37,10 +39,19 @@ public class EmployeeDatabaseApplication {
 			drepository.save(d3);
 			drepository.save(d4);
 			
-			Employee emp1 = new Employee("Mark", "Gonzalez", "mark.gonzalez@thegonz.com", "Mannerheimintie 25 B 2, Helsinki", "+15675678899", "07/12/1970", d1);
-			Employee emp2 = new Employee("Brian", "Lotti", "brian.lotti@planetearth.com", "Lapinlahdenkatu 20 A 1, Helsinki", "+358400123123", "30/09/1982", d2);
-			Employee emp3 = new Employee("Lavar", "McBride", "lavar.mcbride@trilogy.com", "Pier 7, San Fransisco", "+19876987654", "22/03/1985", d3);
-			Employee emp4 = new Employee("Tom", "Penny", "tom.penny@flip.com", "Kensington High Street 5, London", "+44123412345", "05/05/1975", d4);
+			Office o1 = new Office("Helsinki");
+			Office o2 = new Office("San Fransisco");
+			Office o3 = new Office("London");
+			
+			orepository.save(o1);
+			orepository.save(o2);
+			orepository.save(o3);
+			
+			
+			Employee emp1 = new Employee("Mark", "Gonzalez", "mark.gonzalez@thegonz.com", "Mannerheimintie 25 B 2, Helsinki", "+15675678899", "07/12/1970", d1, o1);
+			Employee emp2 = new Employee("Brian", "Lotti", "brian.lotti@planetearth.com", "Lapinlahdenkatu 20 A 1, Helsinki", "+358400123123", "30/09/1982", d2, o1);
+			Employee emp3 = new Employee("Lavar", "McBride", "lavar.mcbride@trilogy.com", "Pier 7, San Fransisco", "+19876987654", "22/03/1985", d3, o2);
+			Employee emp4 = new Employee("Tom", "Penny", "tom.penny@flip.com", "Kensington High Street 5, London", "+44123412345", "05/05/1975", d4, o3);
 			
 			repository.save(emp1);
 			repository.save(emp2);

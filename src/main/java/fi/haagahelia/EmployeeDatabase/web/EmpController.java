@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import fi.haagahelia.EmployeeDatabase.domain.DepartmentRepository;
 import fi.haagahelia.EmployeeDatabase.domain.Employee;
 import fi.haagahelia.EmployeeDatabase.domain.EmployeeRepository;
+import fi.haagahelia.EmployeeDatabase.domain.OfficeRepository;
 
 @Controller
 public class EmpController {
@@ -18,6 +19,9 @@ public class EmpController {
 	
 	@Autowired
 	DepartmentRepository drepository;
+	
+	@Autowired
+	OfficeRepository orepository;
 	
 	//List of all employees in the database
 	@RequestMapping("/emplist")
@@ -38,6 +42,7 @@ public class EmpController {
 	public String editEmp(@PathVariable("id") Long empId, Model model) {
 		model.addAttribute("employee", repository.findById(empId));
 		model.addAttribute("departments", drepository.findAll());
+		model.addAttribute("offices", orepository.findAll());
 		return "empedit";
 	}
 	

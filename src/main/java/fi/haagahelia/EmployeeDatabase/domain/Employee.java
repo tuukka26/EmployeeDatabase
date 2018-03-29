@@ -20,7 +20,7 @@ public class Employee {
 	
 	public Employee () {}
 
-	public Employee(String fName, String lName, String email, String address, String phone, String dob, Department department) {
+	public Employee(String fName, String lName, String email, String address, String phone, String dob, Department department, Office office) {
 		super();
 		this.fName = fName;
 		this.lName = lName;
@@ -29,6 +29,7 @@ public class Employee {
 		this.phone = phone;
 		this.dob = dob;
 		this.department = department;
+		this.office = office;
 	}
 
 	public Long getId() {
@@ -98,5 +99,18 @@ public class Employee {
 	
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+	
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name="officeId")
+	private Office office;
+	
+	public Office getOffice() {
+		return office;
+	}
+	
+	public void setOffice(Office office) {
+		this.office = office;
 	}
 }

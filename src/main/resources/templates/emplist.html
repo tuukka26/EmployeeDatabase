@@ -22,6 +22,7 @@
 			<th>Phone number</th>
 			<th>Date of birth</th>
 			<th>Department</th>
+			<th>Office</th>
 			<th>Delete</th>
 			<th>Edit</th>
 			</tr>
@@ -35,6 +36,7 @@
 				<td th:text="${employee.phone}"></td>
 				<td th:text="${employee.dob}"></td>
 				<td th:text="${employee.department.name}"></td>
+				<td th:text="${employee.office.city}"></td>
 				<td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${employee.id})}">Delete</a></td>
  				<td><a class="btn btn-warning" th:href="@{/edit/{id}(id=${employee.id})}">Edit</a></td>
 			</tr>
