@@ -20,7 +20,7 @@ public class Employee {
 	
 	public Employee () {}
 
-	public Employee(String fName, String lName, String email, String address, String phone, String dob) {
+	public Employee(String fName, String lName, String email, String address, String phone, String dob, Department department) {
 		super();
 		this.fName = fName;
 		this.lName = lName;
@@ -28,6 +28,7 @@ public class Employee {
 		this.address = address;
 		this.phone = phone;
 		this.dob = dob;
+		this.department = department;
 	}
 
 	public Long getId() {
@@ -96,6 +97,6 @@ public class Employee {
 	}
 	
 	public void setDepartment(Department department) {
-		this. department = department;
+		this.department = department;
 	}
 }

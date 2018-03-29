@@ -37,10 +37,10 @@ public class EmployeeDatabaseApplication {
 			drepository.save(d3);
 			drepository.save(d4);
 			
-			Employee emp1 = new Employee("Mark", "Gonzalez", "mark.gonzalez@thegonz.com", "Mannerheimintie 25 B 2, Helsinki", "+15675678899", "07/12/1970");
-			Employee emp2 = new Employee("Brian", "Lotti", "brian.lotti@planetearth.com", "Lapinlahdenkatu 20 A 1, Helsinki", "+358400123123", "30/09/1982");
-			Employee emp3 = new Employee("Lavar", "McBride", "lavar.mcbride@trilogy.com", "Pier 7, San Fransisco", "+19876987654", "22/03/1985");
-			Employee emp4 = new Employee("Tom", "Penny", "tom.penny@flip.com", "Kensington High Street 5, London", "+44123412345", "05/05/1975");
+			Employee emp1 = new Employee("Mark", "Gonzalez", "mark.gonzalez@thegonz.com", "Mannerheimintie 25 B 2, Helsinki", "+15675678899", "07/12/1970", d1);
+			Employee emp2 = new Employee("Brian", "Lotti", "brian.lotti@planetearth.com", "Lapinlahdenkatu 20 A 1, Helsinki", "+358400123123", "30/09/1982", d2);
+			Employee emp3 = new Employee("Lavar", "McBride", "lavar.mcbride@trilogy.com", "Pier 7, San Fransisco", "+19876987654", "22/03/1985", d3);
+			Employee emp4 = new Employee("Tom", "Penny", "tom.penny@flip.com", "Kensington High Street 5, London", "+44123412345", "05/05/1975", d4);
 			
 			repository.save(emp1);
 			repository.save(emp2);

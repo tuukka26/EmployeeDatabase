@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Edit employee information</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
+
+<body>
+	<div class="container">
+	<h1>Edit existing employee information</h1>
+	<div>
+		<form th:object="${employee}" th:action="@{../saveemp}" action="#" method="post">
+			<input type="hidden" th:field="*{id}" class="form-control"/>
+			<div class="form-group">
+				<label for="fName">First name</label>
+				<input class="form-control" type="text" th:field="*{fName}" />
+			</div>
+			<div class="form-group">
+				<label for="lName">Last name</label>
+				<input class="form-control" type="text" th:field="*{lName}" />
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input class="form-control" type="text" th:field="*{email}" />
+			</div>
+			<div class="form-group">
+				<label for="address">Street address</label>
+				<input class="form-control" type="text" th:field="*{address}" />
+			</div>
+			<div class="form-group">
+				<label for="phone">Phone number</label>
+				<input class="form-control" type="text" th:field="*{phone}" />
+			</div>
+			<div class="form-group">
+				<label for="dob">Date of Birth</label>
+				<input class="form-control" type="text" th:field="*{dob}" />
+			</div>
+			<div class="form-group">
+				<select id="deptlist" th:field="*{department}">
+					<option th:each="department: ${departments}" th:value="${department.departmentId}" th:text="${department.name}"></option>
+				</select>
+			</div>
+			<input type="submit" class="btn btn-success" value="Save"></input>
+			<a class="btn btn-warning" th:href="@{/emplist}">Cancel</a>
+		</form>
+	</div>
+</div>
+</body>
+</html>
