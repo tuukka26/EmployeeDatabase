@@ -2,14 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Edit employee information</title>
+<title>Add employee</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 </head>
 
 <body>
 	<div class="container">
-	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<span class="navbar-brand mb-0 h1">HR Employee portal</span>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,41 +32,41 @@
 		    </ul>
 		  </div>
 		</nav>
-		<!-- End of navbar -->
-	<h1>Edit existing employee information</h1>
+	<h1>Add new employee</h1>
 	<div>
-		<form th:object="${employee}" th:action="@{../saveemp}" action="#" method="post">
-			<input type="hidden" th:field="*{id}" class="form-control"/>
+		<form th:object="${employee}" th:action="@{saveemp}" action="#" method="post">
 			<div class="form-group">
 				<label for="fName">First name</label>
-				<input class="form-control" type="text" th:field="*{fName}" />
+				<input class="form-control" type="text" id="fName" th:field="*{fName}" />
 			</div>
 			<div class="form-group">
 				<label for="lName">Last name</label>
-				<input class="form-control" type="text" th:field="*{lName}" />
+				<input class="form-control" type="text" id="lNAme" th:field="*{lName}" />
 			</div>
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input class="form-control" type="text" th:field="*{email}" />
+				<input class="form-control" type="text" id="email" th:field="*{email}" />
 			</div>
 			<div class="form-group">
 				<label for="address">Street address</label>
-				<input class="form-control" type="text" th:field="*{address}" />
+				<input class="form-control" type="text" id="address" th:field="*{address}" />
 			</div>
 			<div class="form-group">
 				<label for="phone">Phone number</label>
-				<input class="form-control" type="text" th:field="*{phone}" />
+				<input class="form-control" type="text" id="phone" th:field="*{phone}" />
 			</div>
 			<div class="form-group">
 				<label for="dob">Date of Birth</label>
-				<input class="form-control" type="text" th:field="*{dob}" />
+				<input class="form-control" type="text" id="dob" th:field="*{dob}" />
 			</div>
 			<div class="form-group">
+				<label for="deptlist">Department</label>
 				<select id="deptlist" th:field="*{department}">
 					<option th:each="department: ${departments}" th:value="${department.departmentId}" th:text="${department.name}"></option>
 				</select>
 			</div>
 			<div class="form-group">
+				<label for="officelist">Office</label>
 				<select id="officelist" th:field="*{office}">
 					<option th:each="office: ${offices}" th:value="${office.officeId}" th:text="${office.city}"></option>
 				</select>

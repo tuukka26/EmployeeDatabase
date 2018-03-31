@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>List of employees</title>
+<title>Add office</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
 <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 </head>
 
@@ -33,40 +32,21 @@
 		    </ul>
 		  </div>
 		</nav>
-		
-		<h1>List of employees</h1>
-		
-	<table class="table table-striped">
-		<thead>
-			<tr>
-			<th>First name</th>
-			<th>Last name</th>
-			<th>Email address</th>
-			<th>Street address</th>
-			<th>Phone number</th>
-			<th>Date of birth</th>
-			<th>Department</th>
-			<th>Office</th>
-			<th>Delete</th>
-			<th>Edit</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="employee: ${employees}">
-				<td th:text="${employee.fName}"></td>
-				<td th:text="${employee.lName}"></td>
-				<td th:text="${employee.email}"></td>
-				<td th:text="${employee.address}"></td>
-				<td th:text="${employee.phone}"></td>
-				<td th:text="${employee.dob}"></td>
-				<td th:text="${employee.department.name}"></td>
-				<td th:text="${employee.office.city}"></td>
-				<td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${employee.id})}">Delete</a></td>
- 				<td><a class="btn btn-warning" th:href="@{/edit/{id}(id=${employee.id})}">Edit</a></td>
-			</tr>
-		</tbody>
-	</table>
-	<a class="btn btn-success" th:href="@{/addemp}">Add a new employee</a>
-	</div>
+		<h1>Add a new department</h1>
+			<div>
+				<form th:object="${department}" th:action="@{savedept}" action="#" method="post">
+				<div class="form-group">
+					<label for="title">Department name</label>
+					<input class="form-control" type="text" id="deptName" th:field="*{name}" />
+				</div>
+				<div class="form-group">
+					<label for="title">Abbreviation</label>
+					<input class="form-control" type="text" id="abbreviation" th:field="*{abbr}" />
+				</div>
+					<input type="submit" class="btn btn-success" value="Add"></input>
+					<a class="btn btn-warning" th:href="@{/deptlist}">Cancel</a>
+				</form>
+			</div>
+</div>
 </body>
 </html>

@@ -29,19 +29,19 @@ public class EmployeeDatabaseApplication {
 		return (args) -> {
 			
 			log.info("Save a few departments, employees and offices");
-			Department d1 = new Department("Sales");
-			Department d2 = new Department("IT");
-			Department d3 = new Department("Financial");
-			Department d4 = new Department("Purchasing");
+			Department d1 = new Department("Sales and Purchasing", "SnP");
+			Department d2 = new Department("Information Technology", "IT");
+			Department d3 = new Department("Finance", "Fin");
+			Department d4 = new Department("Manufacturing", "MfG");
 			
 			drepository.save(d1);
 			drepository.save(d2);
 			drepository.save(d3);
 			drepository.save(d4);
 			
-			Office o1 = new Office("Helsinki");
-			Office o2 = new Office("San Fransisco");
-			Office o3 = new Office("London");
+			Office o1 = new Office("Helsinki", "Finland");
+			Office o2 = new Office("San Fransisco", "United States of America");
+			Office o3 = new Office("London", "United Kingdom");
 			
 			orepository.save(o1);
 			orepository.save(o2);

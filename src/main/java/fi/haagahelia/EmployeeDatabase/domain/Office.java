@@ -16,13 +16,14 @@ public class Office {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long officeId;
 	
-	private String city;
+	private String city, country;
 	
 	public Office() {}
 
-	public Office(String city) {
+	public Office(String city, String country) {
 		super();
 		this.city = city;
+		this.country = country;
 	}
 
 	public Long getOfficeId() {
@@ -41,6 +42,14 @@ public class Office {
 		this.city = city;
 	}
 	
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "office")
 	private List<Employee> employees;
 	
