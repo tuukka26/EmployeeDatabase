@@ -90,6 +90,13 @@ public class EmpController {
 		
 	}
 	
+	//Edit existing office
+	@RequestMapping("/editoffice/{officeId}")
+	public String editOffice(@PathVariable("officeId") Long offId, Model model) {
+		model.addAttribute("office", orepository.findById(offId));
+		return "officeedit";
+	}
+	
 	//Save employee info
 	@RequestMapping("/saveemp")
 	public String saveEmp(Employee employee) {
