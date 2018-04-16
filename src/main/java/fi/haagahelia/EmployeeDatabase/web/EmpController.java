@@ -1,10 +1,20 @@
 package fi.haagahelia.EmployeeDatabase.web;
 
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import fi.haagahelia.EmployeeDatabase.domain.Department;
 import fi.haagahelia.EmployeeDatabase.domain.DepartmentRepository;
@@ -14,7 +24,12 @@ import fi.haagahelia.EmployeeDatabase.domain.Office;
 import fi.haagahelia.EmployeeDatabase.domain.OfficeRepository;
 
 @Controller
-public class EmpController {
+public class EmpController implements WebMvcConfigurer {
+	
+	@Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/emplist").setViewName("emplist");
+    }
 	
 	@Autowired
 	EmployeeRepository repository;
@@ -24,6 +39,18 @@ public class EmpController {
 	
 	@Autowired
 	OfficeRepository orepository;
+	
+	//Login page
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
+	
+	//Default to login
+	@RequestMapping("/")
+	public String start() {
+		return "login";
+	}
 	
 	//Index page
 	@RequestMapping("/index")
@@ -99,7 +126,14 @@ public class EmpController {
 	
 	//Save employee info
 	@RequestMapping("/saveemp")
-	public String saveEmp(Employee employee) {
+	public String saveEmp(@Valid Employee employee, BindingResult bindingResult, Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("departments", drepository.findAll());
+			model.addAttribute("offices", orepository.findAll());
+			return "addemp";
+		}
+		
 		repository.save(employee);
 		return "redirect:emplist";
 	}
@@ -141,7 +175,29 @@ public class EmpController {
 		return "addoffice";
 	}
 	
+	//RESTful service to get all employees
+	@RequestMapping(value="/employees", method=RequestMethod.GET)
+	public @ResponseBody List<Employee> employeeListRest() {
+		return (List<Employee>) repository.findAll();
+	}
 
+	//RESTful service to get employee by id
+	@RequestMapping(value="/employee/{id}", method=RequestMethod.GET)
+	public @ResponseBody Optional<Employee> findEmployeeRest(@PathVariable("id") Long empId) {
+		return repository.findById(empId);
+	}
+	
+	//RESTful service to get all departments
+	@RequestMapping(value="/departments", method=RequestMethod.GET)
+	public @ResponseBody List<Department> departmentListRest() {
+		return (List<Department>) drepository.findAll();
+	}
+	
+	//RESTful service to get all offices
+		@RequestMapping(value="/offices", method=RequestMethod.GET)
+		public @ResponseBody List<Office> officeListRest() {
+			return (List<Office>) orepository.findAll();
+	}
 }
 
 

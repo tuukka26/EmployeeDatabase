@@ -14,6 +14,8 @@ import fi.haagahelia.EmployeeDatabase.domain.Employee;
 import fi.haagahelia.EmployeeDatabase.domain.EmployeeRepository;
 import fi.haagahelia.EmployeeDatabase.domain.Office;
 import fi.haagahelia.EmployeeDatabase.domain.OfficeRepository;
+import fi.haagahelia.EmployeeDatabase.domain.User;
+import fi.haagahelia.EmployeeDatabase.domain.UserRepository;
 
 @SpringBootApplication
 public class EmployeeDatabaseApplication {
@@ -25,7 +27,7 @@ public class EmployeeDatabaseApplication {
 	
 	//For demonstration data purposes
 	@Bean
-	public CommandLineRunner demodata(EmployeeRepository repository, DepartmentRepository drepository, OfficeRepository orepository) {
+	public CommandLineRunner demodata(EmployeeRepository repository, DepartmentRepository drepository, OfficeRepository orepository, UserRepository urepository) {
 		return (args) -> {
 			
 			log.info("Save a few departments, employees and offices");
@@ -57,6 +59,12 @@ public class EmployeeDatabaseApplication {
 			repository.save(emp2);
 			repository.save(emp3);
 			repository.save(emp4);
+			
+			// Creating users: admin/admin, user/user
+			User user1 = new User("user", "$2a$04$lmpTqGqAZ3I2T9lO5aHW.ejGxIoSOUlgwQvoal2xhWtn3BSLr82E.", "USER");
+			User user2 = new User("admin", "$2a$04$jjqsv31kBksv0rnU84HtEONzbIEnGUQAss50vC01.a59NhN8jTm.i", "ADMIN");
+			urepository.save(user1);
+			urepository.save(user2);
 			
 			log.info("Fetch all employees");
 			for (Employee employee : repository.findAll()) {

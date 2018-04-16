@@ -38,26 +38,32 @@
 			<div class="form-group">
 				<label for="fName">First name</label>
 				<input class="form-control" type="text" id="fName" th:field="*{fName}" />
+				<p class="text-danger" th:if="${#fields.hasErrors('fName')}" th:errors="*{fName}">First name error</p>
 			</div>
 			<div class="form-group">
 				<label for="lName">Last name</label>
 				<input class="form-control" type="text" id="lNAme" th:field="*{lName}" />
+				<p class="text-danger" th:if="${#fields.hasErrors('lName')}" th:errors="*{lName}">Last name error</p>			
 			</div>
 			<div class="form-group">
 				<label for="email">Email</label>
 				<input class="form-control" type="text" id="email" th:field="*{email}" />
+				<p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</p>
 			</div>
 			<div class="form-group">
 				<label for="address">Street address</label>
 				<input class="form-control" type="text" id="address" th:field="*{address}" />
+				<p class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address error</p>
 			</div>
 			<div class="form-group">
 				<label for="phone">Phone number</label>
 				<input class="form-control" type="text" id="phone" th:field="*{phone}" />
+				<p class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone number error</p>			
 			</div>
 			<div class="form-group">
 				<label for="dob">Date of Birth</label>
 				<input class="form-control" type="text" id="dob" th:field="*{dob}" />
+				<p class="text-danger" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}">Date of birth error</p>
 			</div>
 			<div class="form-group">
 				<label for="deptlist">Department</label>

@@ -31,7 +31,19 @@
 		      </li>
 		    </ul>
 		  </div>
+		  <div class="nav-item">
+			<h4 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h4>
+		  </div>
+		  <div class="nav-item" style="margin-left:20px">
+			<form class="text-right" th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn btn-danger"/>
+			</form>
+		  </div>
 		</nav>
+		<div class="text-center">
+			<img th:src="@{/images/human-resources.jpg}" width=500 height=300 />
+			<h3>Welcome to the HR Employee Portal</h3>
+		</div>	
 	</div>
 </body>
 </html>

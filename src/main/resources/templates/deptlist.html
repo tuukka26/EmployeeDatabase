@@ -33,6 +33,14 @@
 		      </li>
 		    </ul>
 		  </div>
+		  <div class="nav-item">
+			<h4 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h4>
+		  </div>
+		  <div class="nav-item" style="margin-left:20px">
+			<form class="text-right" th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn btn-danger"/>
+			</form>
+		  </div>
 		</nav>
 		<!-- End of navbar -->
 		<h1>List of departments</h1>
@@ -42,21 +50,21 @@
 			<tr>
 			<th>Department name</th>
 			<th>Abbreviation</th>
-			<th>Delete</th>
-			<th>Edit</th>
+			<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+			<th sec:authorize="hasAuthority('ADMIN')">Edit</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="department: ${departments}">
 				<td th:text="${department.name}"></td>
 				<td th:text="${department.abbr}"></td>
-				<td><a class="btn btn-danger"  th:href="@{/deletedept/{id}(id=${department.departmentId})}">Delete</a></td>
- 				<td><a class="btn btn-warning" th:href="@{/editdept/{id}(id=${department.departmentId})}">Edit</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger"  th:href="@{/deletedept/{id}(id=${department.departmentId})}">Delete</a></td>
+ 				<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-warning" th:href="@{/editdept/{id}(id=${department.departmentId})}">Edit</a></td>
 			</tr>
 		</tbody>
 	</table>
-	<a class="btn btn-success" th:href="@{/adddept}">Add a new department</a>
-	<p class="text-center text-danger font-weight-bold">Please note! Deleting a department will delete all employees in the department!</p>
+	<a sec:authorize="hasAuthority('ADMIN')" class="btn btn-success" th:href="@{/adddept}">Add a new department</a>
+	<p sec:authorize="hasAuthority('ADMIN')" class="text-center text-danger font-weight-bold">Please note! Deleting a department will delete all employees in the department!</p>
 	</div>
 
 <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js}"></script>

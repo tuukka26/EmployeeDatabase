@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,7 +19,24 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String fName, lName, email, address, phone, dob;
+	@NotEmpty(message = "This is a required field, please enter first name")
+	private String fName;
+	
+	@NotEmpty(message = "This is a required field, please enter last name")
+	private String lName; 
+	
+	@NotEmpty(message = "This is a required field, please enter a valid email address")
+	@Email(message = "This is a required field, please enter a valid email address")
+	private String email; 
+	
+	@NotEmpty(message = "This is a required field, please enter address")
+	private String address;
+	
+	@Size(min = 6, max = 15, message = "This is a required field, please enter a phone number that is between {min} and {max} characters long")
+	private String phone;
+	
+	@NotEmpty(message = "This is a required field, please enter date of birth")
+	private String dob;
 	
 	public Employee () {}
 
